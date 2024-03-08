@@ -6,7 +6,7 @@ import json
 AI_CONTAINER_IP = "172.17.0.2"
 if 'AI_CONTAINER_IP' in os.environ:
     AI_CONTAINER_IP = os.environ['AI_CONTAINER_IP'] # retrieve IP of the docker which runs the AI and API
-
+print("AI IP at",AI_CONTAINER_IP)
 app = Flask(__name__) 
 
 
