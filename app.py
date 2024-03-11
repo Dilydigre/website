@@ -15,6 +15,18 @@ def index():
     """Fonction qui s'éxecute lorsque la page est ouverte."""
     return render_template("index.html")
 
+
+@app.route('/explanations', endpoint='explanations') # Page d'explications du fonctionnement de notre modèle "Fonctionnement"
+def explanations():
+    return render_template("explanations.html")
+
+
+@app.route('/about', endpoint='about') # Page des licences, les crédits etc... "À Propos"
+def explanations():
+    return render_template("about.html")
+
+
+# -- API --
 @app.route('/generate',methods = ['GET', 'POST'])
 def generate():
     """
