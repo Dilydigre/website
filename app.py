@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route('/') # La page dont l'url finit par /
 def index():
     """Fonction qui s'éxecute lorsque la page est ouverte."""
-    return render_template("index.html")
+    return render_template("index.html",visibility="d-none")
 
 
 @app.route('/explanations', endpoint='explanations') # Page d'explications du fonctionnement de notre modèle "Fonctionnement"
@@ -49,5 +49,5 @@ def generate():
                 api_result = json.loads(r.text)
 
     if api_result is not None and api_result['status']:
-        return render_template('visage.html',b64imagetag=api_result['image']) # render base64 encoded image
-    return render_template('base.html') # if something fails, retur base template
+        return render_template('index.html',b64imagetag=api_result['image'],visibility="") # render base64 encoded image
+    return render_template('base.html',visibility="d-none") # if something fails, retur base template

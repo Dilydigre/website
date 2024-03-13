@@ -2,12 +2,18 @@
 {% block title %}Génération{% endblock %}
 {% block content %}
 <div class="container">
-    <div class="row">    
+    <div class="row">
+        <div class="col">
+            <div class="{{ visibility }}">
+                <img src="data:image/png;base64, {{ b64imagetag }}">
+            </div>
+        </div>
+        <div class="w-100"></div>    
         <div class="col justify-content-center py-3 my-3">
         <!-- Prompt -->
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Précisez le visage à générer...">
-                <button type="submit" class="btn btn-primary">Générer</button>
+                <button type="submit" action="/generate" class="btn btn-primary">Générer</button>
             </div>
         </div>
         <div class="w-100"></div>
