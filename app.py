@@ -10,7 +10,7 @@ print("AI IP at",AI_CONTAINER_IP)
 app = Flask(__name__) 
 
 
-@app.route('/') # La page dont l'url finit par /
+@app.route('/' method="POST") # La page dont l'url finit par /
 def index():
     """Fonction qui s'éxecute lorsque la page est ouverte."""
     return render_template("index.html",visibility="d-none")
@@ -38,7 +38,7 @@ def generate():
         api_result = json.loads(r.text) # loads returned json
     else:
 
-        data = request.get_json() # get data passed in post request
+        data = {'description':request.form.get('description')} # get data passed in post request
         if 'description' in data and 'model' in data: # get prompt of user passed in post data
             if data['model'] == "v1": # if user request to user the first model
                 r = rq.post("http://"+AI_CONTAINER_IP+":5000/api_v1/generate_prompt",data=json.dumps({'description': data['description']})) # send post request with user prompt as json data
