@@ -10,7 +10,7 @@ print("AI IP at",AI_CONTAINER_IP)
 app = Flask(__name__) 
 
 
-@app.route('/' method="POST") # La page dont l'url finit par /
+@app.route('/') # La page dont l'url finit par /
 def index():
     """Fonction qui s'éxecute lorsque la page est ouverte."""
     return render_template("index.html",visibility="d-none")
