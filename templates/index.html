@@ -12,10 +12,10 @@
         <div class="col justify-content-center py-3 my-3">
         <!-- Prompt -->
             <div class="input-group">
-                <form action="/generate" method="post" id="form-prompt" enctype="application/json" >
-                    <input id="description" type="text" class="form-control" placeholder="Précisez le visage à générer...">
+                <form action="/generate" method="post" id="prompt">
+                    <input name="description" id="description" type="text" class="form-control" placeholder="Précisez le visage à générer...">
                 </form>                
-                <button type="submit" form="form-prompt" value="submit" class="btn btn-primary">Générer</button>
+                <button type="submit" form="prompt" value="submit" class="btn btn-primary">Générer</button>
             </div>
         </div>
         <div class="w-100"></div>
