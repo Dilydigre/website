@@ -11,7 +11,9 @@
     </div>
     <div class="row">
         <p>La génération de l'image utilise un modèle de diffusion latente dont le principe de fonctionnement est le suivant :</p>
-        <img 
+        <img src="{{ url_for('static', filename='img/diffusion_model.png') }}">
+        <p>Une image d'entrée x est d'abord encodée dans un espace latent via une fonction (représentée par le symbole epsilon sur l'image) en un vecteur z. Le vecteur z va ensuite subir une étape de diffusion, c’est à dire l’ajout successif
+            en T étapes de buit Gaussien à l’image d’origine, jusqu’à obtenir zT. Le processus de débruitage du vecteur zT est ensuite réalisé en le conditionnant avec un texte issu de l'entrée de l'utilisateur. L'opération de débruitage est effectuée par un réseau de neurones avec une architecture U-net. Cette opération de débruitage est effectuée T fois pour donner le vecteur nommé z. Ce vecteur est finalement décodé via la fonction représentée par le bloc D pour donner notre image générée. </p>
     </div>
 </div>
 {% endblock %}
