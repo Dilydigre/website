@@ -22,19 +22,15 @@
         <!-- Prompt -->
         <div class="col justify-content-center py-3 my-3">
             <div class="justify-content-center input-group">
+                <input type="checkbox" class="btn-check" id="btn-check" checked autocomplete="off" onchange="updateModelText()">
+                <label id="model-label" class="btn btn-outline-primary" for="btn-check">Modèle v.2</label>
+                
                 <form action="/generate" method="post" id="prompt">
                     <input name="description" id="description" type="text" class="form-control" placeholder="Précisez le visage à générer...">
                 
-
-                <input type="checkbox" class="btn-check" id="btn-check" checked autocomplete="off" onchange="updateModelText()">
-                    <label class="btn btn-outline-primary" for="btn-check">Modèle v.2</label>
+                </form>
 
                 <button type="submit" form="prompt" value="submit" class="btn btn-primary">Générer</button>
-
-                </form>  
-
-                
-
                 
             </div>
         </div>
@@ -53,7 +49,12 @@
     };
 
     function updateModelText() {
-        console.log("COUCOU");
+        const modelSelector = document.getElementById("model-label");   
+        if (modelSelector.innerHTML === "Modèle v.2") {
+            modelSelector.innerHTML = "Modèle v.1";
+        } else {
+            modelSelector.innerHTML = "Modèle v.2";
+        }
     }
 </script>
 
