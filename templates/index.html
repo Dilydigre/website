@@ -23,7 +23,7 @@
         <div class="col justify-content-center py-3 my-3">
             <div class="justify-content-center input-group">
                 <input type="checkbox" class="btn-check" id="btn-check" checked autocomplete="off" onchange="updateModelText()">
-                <label id="model-label" class="btn btn-outline-primary" for="btn-check">Modèle v.2</label>
+                <label id="model-label" class="btn btn-outline-primary" aria-pressed="false" for="btn-check">Modèle v.2</label>
                 
                 <form action="/generate" method="post" id="prompt">
                     <input name="description" id="description" type="text" class="form-control" placeholder="Précisez le visage à générer...">
@@ -37,25 +37,5 @@
         <div class="w-100"></div>
     </div>
 </div>
-
-<script>
-    function download() {
-        const imageData = document.getElementById("generated-img").src;
-        const downloadLink = document.createElement("a");
-        downloadLink.href = imageData;
-        downloadLink.download = "generatedImage" + Date.now() + ".png";
-        downloadLink.class = "hidden";
-        downloadLink.click();
-    };
-
-    function updateModelText() {
-        const modelSelector = document.getElementById("model-label");   
-        if (modelSelector.innerHTML === "Modèle v.2") {
-            modelSelector.innerHTML = "Modèle v.1";
-        } else {
-            modelSelector.innerHTML = "Modèle v.2";
-        }
-    }
-</script>
 
 {% endblock %}
