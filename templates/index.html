@@ -3,12 +3,20 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col justify-content-center mx-auto py-3 my-3">
+
+        <div class="w-100 col justify-content-center mx-auto py-3 my-3">
             <div class="text-center {{ visibility }}">
-                <img class="rounded" src="data:image/png;base64, {{ b64imagetag }}">
+                <img id="generated-img" class="rounded" src="data:image/png;base64,{{ b64imagetag }}">
             </div>
+            
         </div>
+
+        <div class="col justify-content-center py-3 my-3 {{ visibility }}">
+            <button type="button" class="btn btn-info" onclick="download()">Télécharger</button>
+        </div>
+
         <div class="w-100"></div>    
+
         <div class="col justify-content-center py-3 my-3">
         <!-- Prompt -->
             <div class="justify-content-center input-group">
@@ -21,4 +29,16 @@
         <div class="w-100"></div>
     </div>
 </div>
+
+<script>
+    function download() {
+        const imageData = document.getElementById("generated-img").src;
+        const downloadLink = document.createElement("a");
+        downloadLink.href = imageData;
+        downloadLink.download = "generatedImage" + Date.now() + ".png";
+        downloadLink.class = "hidden";
+        downloadLink.click();
+    };
+</script>
+
 {% endblock %}

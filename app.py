@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import os
 import requests as rq
 import json
+import base64
 
 AI_CONTAINER_IP = "172.17.0.2"
 if 'AI_CONTAINER_IP' in os.environ:
