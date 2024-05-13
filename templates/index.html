@@ -24,8 +24,18 @@
             <div class="justify-content-center input-group">
                 <form action="/generate" method="post" id="prompt">
                     <input name="description" id="description" type="text" class="form-control" placeholder="Précisez le visage à générer...">
-                </form>                
+                
+
+                <input type="checkbox" class="btn-check" id="btn-check" checked autocomplete="off" onchange="updateModelText()">
+                    <label class="btn btn-outline-primary" for="btn-check">Modèle v.2</label>
+
                 <button type="submit" form="prompt" value="submit" class="btn btn-primary">Générer</button>
+
+                </form>  
+
+                
+
+                
             </div>
         </div>
         <div class="w-100"></div>
@@ -41,6 +51,10 @@
         downloadLink.class = "hidden";
         downloadLink.click();
     };
+
+    function updateModelText() {
+        console.log("COUCOU");
+    }
 </script>
 
 {% endblock %}
