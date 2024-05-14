@@ -1,6 +1,3 @@
-#model-label{
-	--bs-btn-hover-bg: var(--bs-btn-bg);
-}
-#btn-check{
-	--bs-btn-hover-bg: var(--bs-btn-bg);
+#generated-img {
+	width: 40%;
 }

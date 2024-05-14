@@ -6,7 +6,7 @@
         <!-- Image générée -->
         <div class="w-100 col justify-content-center mx-auto py-3 my-3"> 
             <div class="text-center {{ visibility }}">
-                <img id="generated-img" class="rounded" src="data:image/png;base64,{{ b64imagetag }}" width="500" height="500">
+                <img id="generated-img" class="rounded" src="data:image/png;base64,{{ b64imagetag }}">
             </div>        
         </div>
         <div class="w-100"></div> 
@@ -21,16 +21,22 @@
 
         <!-- Prompt -->
         <div class="w-100 col justify-content-center py-3 my-3">
-            <div class="w-100 justify-content-center input-group">
-                <input type="checkbox" class="btn-check" id="btn-check" checked autocomplete="off" onchange="updateModelText()">
-                <label id="model-label" class="btn btn-outline-primary" aria-pressed="false" for="btn-check">Modèle v.2</label>
-                
+            <div class="w-100">
+
                 <form action="/generate" method="post" id="prompt">
-                    <input name="description" id="description" type="text" class="form-control" placeholder="Précisez le visage à générer...">
-                
+                        <div class="input-group">
+                        
+                        <input hidden name="is-version-one" type="checkbox" class="btn-check form-control float-right" id="btn-check" autocomplete="off" onchange="updateModelText()">
+                        <label id="model-label" class="btn btn-outline-primary" for="btn-check">Modèle v.2</label>
+                        
+                        <input name="description" id="description" type="text" class="form-control col-md-10" placeholder="Précisez le visage à générer...">
+                        
+
+                        <button type="submit" form="prompt" value="submit" class="btn btn-primary">Générer</button>
+                        </div>
                 </form>
 
-                <button type="submit" form="prompt" value="submit" class="btn btn-primary">Générer</button>
+                
                 
             </div>
         </div>
@@ -38,4 +44,33 @@
     </div>
 </div>
 
+
+{% if api_error %}
+
+<!-- Popup if an error as occured -->
+<div class="modal" tabindex="-1" id="errorModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Désolé</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Une erreur s'est produite de notre côté, veuillez nous en excuser.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script to show the modal -->
+
+<script>
+    const errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {}); // get the modal
+    errorModal.show();  // show it
+</script>
+
+{% endif %}
+
+
 {% endblock %}
+
