@@ -8,7 +8,7 @@ AI_CONTAINER_IP = "172.17.0.2"
 
 if 'AI_CONTAINER_IP' in os.environ:
     AI_CONTAINER_IP = os.environ['AI_CONTAINER_IP'] # retrieve IP of the docker which runs the AI and API
-print("AI IP at",AI_CONTAINER_IP)
+
 app = Flask(__name__) 
 
 
@@ -34,7 +34,6 @@ def generate():
     """
     Backend function to call API when user ask to generate an image
     """
-
     api_result = None
 
     if request.method == 'GET' or request.data == "": # Only generation without prompt
@@ -55,8 +54,8 @@ def generate():
             return render_template('index.html',b64imagetag="",visibility="d-none", api_error=True) # if fail, return index with error modal
 
         api_result = json.loads(r.text) # load json result of API as dict
-        print("API output:",api_result)
+        
     if api_result is not None and 'status' in list(api_result.keys()) and api_result['status']:
         return render_template('index.html',b64imagetag=api_result['image'],visibility="") # render base64 encoded image
 
-    return render_template('base.html',visibility="d-none", api_error=True) # if something fails, retur base template
+    return render_template('index.html',visibility="d-none", api_error=True) # if something fails, return index template + error modal
