@@ -56,7 +56,7 @@ def generate():
 
         api_result = json.loads(r.text) # load json result of API as dict
 
-    if api_result is not None and 'status' in list(api_result.keys()):
+    if api_result is not None and 'status' in list(api_result.keys()) and api_result['status']:
         return render_template('index.html',b64imagetag=api_result['image'],visibility="") # render base64 encoded image
 
     return render_template('base.html',visibility="d-none", api_error=True) # if something fails, retur base template
