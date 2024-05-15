@@ -38,26 +38,25 @@ def generate():
     api_result = None
 
     if request.method == 'GET' or request.data == "": # Only generation without prompt
-        r = rq.get("http://"+AI_CONTAINER_IP+":5000/api_v1/generate") # send request to AI/API container
+        r = rq.get("http://" + AI_CONTAINER_IP + ":5000/api_v1/generate") # send request to AI/API container
         api_result = json.loads(r.text) # loads returned json
+
     else:
-        
         data = {'description':request.form.get('description')} # get data passed in post request
 
         model_version_is_one = (request.form.get('is-version-one') is not None) and (request.form.get('is-version-one') == "on") # get selected model version
 
         data['model'] = "v1" if model_version_is_one else "v2"
-
         api_url = "http://" + AI_CONTAINER_IP + ":5000/api_" + data['model'] + "/generate_prompt" # construct the url to request the selected model
         
         try:
             r = rq.post(api_url, data=json.dumps({'description': data['description']})) # send post request with user prompt as json data
         except:
-            return render_template('index.html',b64imagetag="",visibility="d-none", api_error=True)
+            return render_template('index.html',b64imagetag="",visibility="d-none", api_error=True) # if fail, return index with error modal
 
-        api_result = json.loads(r.text)
+        api_result = json.loads(r.text) # load json result of API as dict
 
-    if api_result is not None and api_result['status']:
+    if api_result is not None and 'status' in list(api_result.keys()):
         return render_template('index.html',b64imagetag=api_result['image'],visibility="") # render base64 encoded image
 
     return render_template('base.html',visibility="d-none", api_error=True) # if something fails, retur base template
